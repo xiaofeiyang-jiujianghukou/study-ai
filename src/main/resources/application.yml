@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: study-ai
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    jdbcUrl: jdbc:mysql://rm-bp1je2q732020418w6o.mysql.rds.aliyuncs.com:3306/xiaofeiyang-ai?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: xiaofeiyang
+    password: xfy@930112
+    hikari:
+      maximum-pool-size: 10
+  main:
+    allow-bean-definition-overriding: true
+
+deepseek:
+  api:
+    key: sk-bed67c0c95c04370b92986264ccf21c7
+    model: deepseek-chat
+    url: https://api.deepseek.com/chat/completions
+
+qwen:
+  api:
+    key: sk-a41ebd38c93c43269e46a6ec46787f18
+    model: qwen-plus
+    url: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+
+doubao:
+  api:
+    key: 19110c24-a503-4776-b464-6bcd1dcec8d7
+    model: doubao-1.5-pro-32k-250115
+    url: https://ark.cn-beijing.volces.com/api/v3/chat/completions
+
