@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import xiaofeiyang.study.ai.controller.dto.deepseek.ChatReqDTO;
 import xiaofeiyang.study.ai.controller.dto.deepseek.ChatRespDTO;
@@ -126,6 +127,68 @@ public class DoubaoManager {
         } catch (Exception e) {
             throw new RuntimeException("Failed to parse DeepSeek response: " + e.getMessage(), e);
         }
+    }
+
+    public Flux<String> generateResponse2(String userMessage) {
+        // 构建完整的消息历史，包括系统提示和之前的对话
+        List<Map<String, String>> messages = new ArrayList<>();
+
+        // 添加系统提示（固定）
+        Map<String, String> systemMessage = new HashMap<>();
+        systemMessage.put("role", "system");
+        systemMessage.put("content", "You are a helpful assistant.");
+        messages.add(systemMessage);
+
+        // 添加对话历史（用户和 AI 的交互）
+        messages.addAll(conversationHistory);
+
+        // 添加新的用户消息
+        Map<String, String> newUserMessage = new HashMap<>();
+        newUserMessage.put("role", "user");
+        newUserMessage.put("content", userMessage);
+        messages.add(newUserMessage);
+
+        // 构建请求体
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("model", "doubao-1.5-pro-32k-250115");
+        requestBody.put("stream", false);
+        requestBody.put("messages", messages);
+
+        /*Flux<String> flux = doubaoClient.post()
+                .bodyValue(requestBody)
+                //.header("Authorization", "Bearer " + apiKey)
+                .retrieve()
+                .bodyToFlux(String.class)
+                .map(response -> {
+                    // 解析响应，提取 AI 的回答
+                    String aiResponse = parseResponse(response); // 自定义解析方法
+                    // 更新对话历史，添加 AI 的响应
+                    Map<String, String> aiMessage = new HashMap<>();
+                    aiMessage.put("role", "assistant");
+                    aiMessage.put("content", aiResponse);
+                    conversationHistory.add(newUserMessage); // 添加用户消息
+                    conversationHistory.add(aiMessage); // 添加 AI 响应
+                    return aiResponse;
+                });*/
+        /*flux.delayElements(Duration.ofSeconds(1)).subscribe(response -> {
+            System.out.println("Response: " + response);
+        });*/
+        return doubaoClient.post()
+                .bodyValue(requestBody)
+                //.header("Authorization", "Bearer " + apiKey)
+                .retrieve()
+                .bodyToFlux(String.class)
+                .map(response -> {
+                    // 解析响应，提取 AI 的回答
+                    String aiResponse = parseResponse(response); // 自定义解析方法
+                    // 更新对话历史，添加 AI 的响应
+                    Map<String, String> aiMessage = new HashMap<>();
+                    aiMessage.put("role", "assistant");
+                    aiMessage.put("content", aiResponse);
+                    conversationHistory.add(newUserMessage); // 添加用户消息
+                    conversationHistory.add(aiMessage); // 添加 AI 响应
+                    return aiResponse;
+                });
     }
 
     // 可选：限制对话历史长度，防止超出上下文窗口
