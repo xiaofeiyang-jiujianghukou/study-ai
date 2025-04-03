@@ -55,4 +55,10 @@ public class DoubaoController {
         return doubaoManager.generateResponse2(input.getMessage());
     }
 
+    @PostMapping(value = "/chat3", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @Operation(summary = "获取用户信息", description = "通过用户ID获取用户的详细信息")
+    public Flux<String> chat3(@Validated @RequestBody ChatReqDTO input) {
+        return doubaoManager.generateResponse3(input.getMessage());
+    }
+
 }

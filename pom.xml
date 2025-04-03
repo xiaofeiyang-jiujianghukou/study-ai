@@ -105,10 +105,10 @@
 			<version>0.2.1</version>
 		</dependency>
 
-		<!--<dependency>
+		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-generator</artifactId>
-			<version>3.5.7</version> &lt;!&ndash; 替换为你使用的 MyBatis-Plus 版本 &ndash;&gt;
+			<version>3.5.7</version> <!-- 替换为你使用的 MyBatis-Plus 版本 -->
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>
@@ -124,14 +124,14 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.33</version> &lt;!&ndash; 替换为你的 MySQL 驱动版本 &ndash;&gt;
+			<version>8.0.33</version> <!-- 替换为你的 MySQL 驱动版本 -->
 		</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-		</dependency>-->
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
