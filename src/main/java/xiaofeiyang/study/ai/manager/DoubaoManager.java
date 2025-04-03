@@ -153,26 +153,6 @@ public class DoubaoManager {
         requestBody.put("model", "doubao-1.5-pro-32k-250115");
         requestBody.put("stream", false);
         requestBody.put("messages", messages);
-
-        /*Flux<String> flux = doubaoClient.post()
-                .bodyValue(requestBody)
-                //.header("Authorization", "Bearer " + apiKey)
-                .retrieve()
-                .bodyToFlux(String.class)
-                .map(response -> {
-                    // 解析响应，提取 AI 的回答
-                    String aiResponse = parseResponse(response); // 自定义解析方法
-                    // 更新对话历史，添加 AI 的响应
-                    Map<String, String> aiMessage = new HashMap<>();
-                    aiMessage.put("role", "assistant");
-                    aiMessage.put("content", aiResponse);
-                    conversationHistory.add(newUserMessage); // 添加用户消息
-                    conversationHistory.add(aiMessage); // 添加 AI 响应
-                    return aiResponse;
-                });*/
-        /*flux.delayElements(Duration.ofSeconds(1)).subscribe(response -> {
-            System.out.println("Response: " + response);
-        });*/
         return doubaoClient.post()
                 .bodyValue(requestBody)
                 //.header("Authorization", "Bearer " + apiKey)
