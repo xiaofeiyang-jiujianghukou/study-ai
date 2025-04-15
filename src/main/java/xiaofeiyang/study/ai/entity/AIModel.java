@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +19,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Models implements Serializable {
+@TableName("ai_model")
+public class AIModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +33,12 @@ public class Models implements Serializable {
     /**
      * 模型名称
      */
-    private String name;
+    private String modelName;
+
+    /**
+     * API 模型 编码
+     */
+    private String modelCode;
 
     /**
      * API 历经
@@ -41,11 +49,6 @@ public class Models implements Serializable {
      * API 密钥
      */
     private String apiKey;
-
-    /**
-     * API 模型
-     */
-    private String apiModel;
 
     /**
      * 状态 1有效 0无效

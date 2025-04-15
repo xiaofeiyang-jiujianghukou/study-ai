@@ -1,6 +1,7 @@
 package xiaofeiyang.study.ai.service;
 
-import xiaofeiyang.study.ai.entity.Models;
+import xiaofeiyang.study.ai.common.enums.StatusEnum;
+import xiaofeiyang.study.ai.entity.AIModel;
 import xiaofeiyang.study.ai.mapper.ModelsMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,12 @@ import org.springframework.stereotype.Service;
  * @since 2025-04-03
  */
 @Service
-public class ModelsService extends ServiceImpl<ModelsMapper, Models> {
+public class ModelsService extends ServiceImpl<ModelsMapper, AIModel> {
 
+    public AIModel getByModelCode(String modelCode) {
+        return this.lambdaQuery()
+                .eq(AIModel::getModelCode, modelCode)
+                .eq(AIModel::getStatus, StatusEnum.NOT.getValue())
+                .one();
+    }
 }
