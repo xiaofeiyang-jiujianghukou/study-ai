@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import xiaofeiyang.study.ai.controller.dto.deepseek.ChatReqDTO;
-import xiaofeiyang.study.ai.controller.dto.deepseek.ChatRespDTO;
+import xiaofeiyang.study.ai.controller.dto.ChatReqDTO;
+import xiaofeiyang.study.ai.controller.dto.ChatRespDTO;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package xiaofeiyang.study.ai.controller.dto.deepseek;
+package xiaofeiyang.study.ai.controller.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;

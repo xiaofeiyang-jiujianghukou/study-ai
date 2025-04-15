@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xiaofeiyang.study.ai.common.Result;
 import xiaofeiyang.study.ai.manager.DeepSeekManager;
-import xiaofeiyang.study.ai.controller.dto.deepseek.ChatReqDTO;
+import xiaofeiyang.study.ai.controller.dto.ChatReqDTO;
 
 @RestController
 @RequestMapping(path = {"/management/deep-seek/", "/inner/deep-seek/"})

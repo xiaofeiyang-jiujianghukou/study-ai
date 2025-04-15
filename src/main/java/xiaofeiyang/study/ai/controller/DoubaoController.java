@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import xiaofeiyang.study.ai.common.Result;
-import xiaofeiyang.study.ai.controller.dto.deepseek.ChatReqDTO;
+import xiaofeiyang.study.ai.controller.dto.ChatReqDTO;
 import xiaofeiyang.study.ai.manager.DoubaoManager;
 
 @RestController
