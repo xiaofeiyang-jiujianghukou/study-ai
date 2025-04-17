@@ -22,7 +22,6 @@ import java.util.Map;
 public class QwenManager {
 
     @Resource
-    @Qualifier(value = "qwenClient")
     private WebClient qwenClient;
 
     private final List<Map<String, String>> conversationHistory = new ArrayList<>(); // 对话历史

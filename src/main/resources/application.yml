@@ -13,6 +13,14 @@ spring:
       maximum-pool-size: 10
   main:
     allow-bean-definition-overriding: true
+  redis:
+    host: 47.111.104.180
+    port: 6379
+    password: yourpassword
+    #Cache
+  cache:
+    redis:
+      time-to-live: 1800000
 
 deepseek:
   api:

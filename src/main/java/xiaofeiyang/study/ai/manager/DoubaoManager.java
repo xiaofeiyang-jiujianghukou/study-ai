@@ -23,7 +23,6 @@ import java.util.Map;
 public class DoubaoManager {
 
     @Resource
-    @Qualifier(value = "doubaoClient")
     private WebClient doubaoClient;
 
     private final List<Map<String, String>> conversationHistory = new ArrayList<>(); // 对话历史

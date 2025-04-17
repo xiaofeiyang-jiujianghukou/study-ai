@@ -5,12 +5,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import xiaofeiyang.study.ai.common.Result;
+import xiaofeiyang.study.ai.common.aspect.annotation.NoRepeatSubmit;
 import xiaofeiyang.study.ai.controller.dto.ChatReqDTO;
 import xiaofeiyang.study.ai.manager.DoubaoManager;
 
@@ -37,6 +35,7 @@ public class DoubaoController {
     @Resource
     private DoubaoManager doubaoManager;
 
+    @NoRepeatSubmit(interval = 60, keyword = "myKeyword", includeUser = false)
     @PostMapping("/chat")
     @Operation(summary = "获取用户信息", description = "通过用户ID获取用户的详细信息")
     public Result<String> chat(@Validated @RequestBody ChatReqDTO input) {
@@ -59,6 +58,27 @@ public class DoubaoController {
     @Operation(summary = "获取用户信息", description = "通过用户ID获取用户的详细信息")
     public Flux<String> chat3(@Validated @RequestBody ChatReqDTO input) {
         return doubaoManager.generateResponse3(input.getMessage());
+    }
+
+    @NoRepeatSubmit(interval = 60, keyword = "code", includeUser = false)
+    @PostMapping("/chat4")
+    @Operation(summary = "获取用户信息", description = "通过用户ID获取用户的详细信息")
+    public Result<String> chat4(@Validated @RequestParam(value = "code") String code, @Validated @RequestParam(value = "name") String name) {
+        return Result.success(String.join("-", code, name));
+    }
+
+    @NoRepeatSubmit(interval = 60, keyword = "name", includeUser = false)
+    @GetMapping("/chat5")
+    @Operation(summary = "获取用户信息", description = "通过用户ID获取用户的详细信息")
+    public Result<String> chat5(@Validated @RequestParam(value = "name") String name) {
+        return Result.success(String.join("-", "Hello", name));
+    }
+
+    @NoRepeatSubmit(interval = 60, keyword = "name", includeUser = false)
+    @GetMapping("/chat6/{name}")
+    @Operation(summary = "获取用户信息", description = "通过用户ID获取用户的详细信息")
+    public Result<String> chat6(@PathVariable(value = "name") String name) {
+        return Result.success(String.join("-", "Hello", name));
     }
 
 }

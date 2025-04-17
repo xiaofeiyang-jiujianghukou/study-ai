@@ -15,4 +15,7 @@ public class ChatReqDTO {
 
     @Schema(name = "消息")
     private String message;
+
+    @Schema(name = "关键字")
+    private String myKeyword;
 }

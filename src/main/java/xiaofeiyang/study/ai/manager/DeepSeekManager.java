@@ -23,7 +23,6 @@ public class DeepSeekManager {
     private final List<Map<String, String>> conversationHistory = new ArrayList<>(); // 对话历史
 
     @Resource
-    @Qualifier(value = "deepSeekClient")
     private WebClient deepSeekClient;
 
     private static Map<String, String> systemMessage = new HashMap<>();
